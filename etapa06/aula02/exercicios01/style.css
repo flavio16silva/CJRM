@@ -1,0 +1,85 @@
+.container {
+  max-width: 80rem;
+  padding-top: 7.5rem;
+}
+
+.username-help-feedback {
+  margin-bottom: 2.5rem;
+  color: darkorange;
+}
+
+.username-success-feedback {
+  margin-bottom: 2.5rem;
+  color: green;
+}
+
+.submit-help-feedback {
+  margin-bottom: 2.5rem;
+  color: red;
+}
+
+.submit-success-feedback {
+  margin-bottom: 2.5rem;
+  color: green;
+}
+
+/* 
+
+
+const form = document.querySelector('form')
+const paragrafo = document.createElement('p')
+const fieldset = document.querySelector('fieldset')
+
+recebendo o valor do input por parametro - username
+retorno do boolean da invocação da test(username) resulta
+Passo1: desativar a validaçao da regex no submit - nameRegex
+
+const testeUser = username => /^[a-zA-Z]{6,}$/.test(username)
+
+fieldset.insertAdjacentElement('beforeend', paragrafo)
+
+form.addEventListener('submit', event => {
+  
+  event.preventDefault()  
+  
+  const username = event.target.username.value    //obter valor do input no momento do submit
+  //const nameRegex = /^[a-zA-Z]{6,}$/            //regex
+  //const isValidName = nameRegex.test(username)   //testando a validação da regex no username
+  
+  const isValidName = testeUser(username) //recebendo a invocação da testeUser
+
+  if (isValidName) {
+    paragrafo.textContent = "Dados enviados =)"
+    paragrafo.setAttribute('class', '.submit-success-feedback')
+    return
+  }
+    paragrafo.textContent = "Por favor, insira um username válido"
+    paragrafo.setAttribute('class', 'submit-help-feedback')
+  
+})
+
+form.username.addEventListener('keyup', event => {
+  //const username = event.target.value //1) obtendo cada valor digitado no input
+   
+  const isValidName = testeUser(event.target.value) //2)
+  //const isValidName = testeUser(event.target.value)
+  //console.log(event)
+ 
+ //O regex testado no submit será o mesmo testado no keyup
+
+  if (isValidName) {
+    paragrafo.textContent = 'Username válido =)'
+    paragrafo.setAttribute('class', 'username-success-feedback')
+    // console.log('é valido')
+    return
+  }
+    paragrafo.textContent = ' O valor deve conter no mínimo 6 caracteres, com apenas letras maiúsculas e/ou minúsculas'
+    paragrafo.setAttribute('class', 'username-help-feedback')
+    //console.log('não é valido')
+})
+
+
+
+
+
+*/
