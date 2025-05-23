@@ -121,7 +121,23 @@ const getuserAnswers = () => {
 
     return userAnswers
 }
+/*
+side effect => efeito colateral, é qualquer mudança de estado em uma aplicação
+que pode ser percebido do lado de fora da função e que não é um valor retornado
+pela função
 
+Exemplos de efeito colateral:
+ - modificar alguma variavel ou propriedade de objeto que tá do lado de fora da função
+ - logar no console
+ - manipular o DOM
+ - desencadear qualquer processo do lado de fora da função
+ - invocar outra função que produza efeito colateral
+
+ - Estado numa aplicação: é tudo que armazena um valor. 
+ - Estado compartilhado => é qualquer variavel, objeto ou espaço na memoria, que
+ existe em um escopo compartilhado ou existe como propriedade de um objeto
+ que é passada entre escopos. 
+*/
 const calculateUserPoint = userAnswers => {
      userAnswers.forEach((userAnswers, index) => {
         const isUserAnswerCorrect = userAnswers === correctAnswers[index]
