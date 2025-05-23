@@ -8,7 +8,6 @@
 const randomNumbers = [10, 30, 15, 25, 50, 40, 5]
 
 const getOddNumbers = randomNumber => randomNumber % 2 !== 0
-
 const numberOdd = randomNumbers.filter(getOddNumbers)
 console.log(numberOdd)
 
