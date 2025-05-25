@@ -27,7 +27,7 @@ e seu valor promocional do livro - metodo map
 // )
 // console.log(bookNameValue)
 
-//Podemos entao invocar o metodo map no final da invicação do metodo filter:
+//Podemos entao invocar o metodo map no final da invocação do metodo filter:
 const onSaleBooks = books
  .filter(({price}) => price > 20)
  .map(({name, price}) => 
