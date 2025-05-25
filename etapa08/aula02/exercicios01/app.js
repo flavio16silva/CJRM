@@ -163,8 +163,15 @@ console.log(ageHumanPets)
   - Considerando o array topBrazilmovies, através do map ou do reduce, insira 
     os nomes dos filmes na ul do index.html.
 
-    
 */
+const ul = document.querySelector('.list-group')
+
+const nameFilmes = topBrazilmovies.map(({title}) => title)
+console.log(nameFilmes)
+
+topBrazilmovies.forEach(({title}) => {
+  ul.innerHTML += `<li>${(title)}</li>`
+})
 
 /*
   10
