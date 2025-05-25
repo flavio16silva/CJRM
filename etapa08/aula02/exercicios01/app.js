@@ -8,6 +8,9 @@
 
 const names = ['Caio', 'André', 'Dário']
 
+const orderNames = names.sort()
+console.log(orderNames)
+
 /*
   02
 
@@ -23,6 +26,10 @@ const characters = [
   { id: 04, name: 'Mufasa' }
 ]
 
+const orderCharacters = characters.sort((character1, character2) => 
+        character1.id - character2.id)
+console.log(orderCharacters)
+
 /*
   03
 
@@ -32,6 +39,8 @@ const characters = [
 */
 
 const numbers = [41, 15, 63, 349, 25, 22, 143, 64, 59, 291]
+const orderNumbers = numbers.sort((number1, number2) => number1 - number2)
+console.log(orderNumbers)
 
 /*
   04
@@ -40,6 +49,16 @@ const numbers = [41, 15, 63, 349, 25, 22, 143, 64, 59, 291]
 */
 
 const randomNumbers = [10, 5, 0, 40, 60, 10, 20, 70]
+
+const orderNum = randomNumbers.sort((randomNumber1, randomNumber2) => randomNumber1 - randomNumber2)
+.filter((item, index) => {
+  if (item > 50){
+      
+  }
+})
+          
+//console.log(orderNum)
+
 
 /*
   05
@@ -51,6 +70,17 @@ const randomNumbers = [10, 5, 0, 40, 60, 10, 20, 70]
 
 const people = ['Cauã', 'Alfredo', 'Bruno']
 
+const orderPeople = people.sort((person1, person2) => { 
+  if(person1 < person2) {
+    return 1
+  } else if (person1 > person2) {
+    return -1
+  }
+  return 0
+  
+})
+console.log(orderPeople)
+
 /*
   06
   
@@ -60,6 +90,10 @@ const people = ['Cauã', 'Alfredo', 'Bruno']
 */
 
 const ingredients = ['vinho', 'tomate', 'cebola', 'cogumelo']
+
+const alimentos = ingredients.map(item => `${item} cozido`)
+console.log(alimentos)
+
 
 /*
   07
@@ -81,6 +115,15 @@ const topBrazilmovies = [
   { title: 'Dona Flor e Seus Dois Maridos', peopleAmount: 10735524, distributedBy: 'Embrafilme' }
 ]
 
+const peopleDisneyTotal = topBrazilmovies.reduce((accumulator, movie) => {
+  if (movie.distributedBy === 'Disney'){
+      accumulator += movie.peopleAmount
+  }
+  return accumulator
+}, 0)
+
+console.log(peopleDisneyTotal)
+
 /*
   08
   
@@ -100,6 +143,19 @@ const pets = [
   { name: 'Cristal', age: 3, gender: 'Female', type: 'Dog' },
   { name: 'Chico', age: 6, gender: 'Male', type: 'Dog' }
 ]
+
+const ageHumanPets = pets.map(pet => {
+  if (pet.age){
+    return {
+      name: pet.name,
+      age: pet.age * 7,
+      gender: pet.gender,
+      type: pet.type
+    }
+  }
+  return pet
+})
+console.log(ageHumanPets)
 
 /*
   09
