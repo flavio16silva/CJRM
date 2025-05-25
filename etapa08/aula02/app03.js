@@ -14,7 +14,7 @@ console.log(names) //(3) ['Alfred', 'Christian', 'Edson']
 //exemplo 2: ordenando números
 const scores = [10, 50, 20, 5, 35, 70, 45]
 scores.sort()
-//console.log(scores) //(7) [10, 20, 35, 45, 5, 50, 70] incorreto, pois considerouo apenas o primeiro número
+//console.log(scores) //(7) [10, 20, 35, 45, 5, 50, 70] incorreto, pois considerou apenas o primeiro número
 
 
 //Melhor opção de expressão e retorno (enxuta de ordenar arrays). 
