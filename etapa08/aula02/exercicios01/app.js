@@ -50,14 +50,8 @@ console.log(orderNumbers)
 
 const randomNumbers = [10, 5, 0, 40, 60, 10, 20, 70]
 
-const orderNum = randomNumbers.sort((randomNumber1, randomNumber2) => randomNumber1 - randomNumber2)
-.filter((item, index) => {
-  if (item > 50){
-      
-  }
-})
-          
-//console.log(orderNum)
+const orderNum = randomNumbers.filter(randomNumber => randomNumber > 50)
+console.log(orderNum[0])
 
 
 /*
