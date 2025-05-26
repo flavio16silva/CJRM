@@ -17,7 +17,7 @@ Métodos (ações) - publicar, despublicar e deletar
 */
 
 //Então, objetos em JS vão possibilitar que criemos estruturas de dados que representam certos elementos de nosso codigo ou das nossas aplicações web.
-//O JS também possui objetos acoplados que iremos usar. DATE e MATCH. Exsitem os objetos individuais conhecidos como objetos literais 
+//O JS também possui objetos acoplados que iremos usar. DATE e MATCH. Existem os objetos individuais conhecidos como objetos literais 
 
 
 //Criando um objeto literal - Aula 01-03
