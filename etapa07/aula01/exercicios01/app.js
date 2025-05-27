@@ -168,12 +168,17 @@ const animationPoint = () => {
     }, 10)
 }
 
+const resetUserScore = () => {
+    point = 0
+}
+
 //Código após Refatorar - Transformando em funções de responsabilidade única:
 form.addEventListener('submit', event => {
     event.preventDefault()
         
     const userAnswers = getuserAnswers() //Obtem as respostas do usuario
-        
+     
+    resetUserScore()
     calculateUserPoint(userAnswers)  //Calcula a pontuação do usuário
     showPoint()                             //exibe a pontuação final
     animationPoint()                            //animando a pontuação final.
