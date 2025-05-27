@@ -4,12 +4,16 @@
   - Ordene o array de strings abaixo em ordem alfabética;
   - Não modifique o array original;
   - Exiba o array ordenado no console.
+
+  obs.: não podemos usar o sort porque ele altera o array original.
+  Usamos o metodo map() para copiar o array original e depois aplicar o 
+  metodo sort()
 */
 
 const names = ['Caio', 'André', 'Dário']
 
-const orderNames = names.sort()
-console.log(orderNames)
+const nameCopy = names.map(item => item).sort()
+console.log(nameCopy)
 
 /*
   02
@@ -17,6 +21,9 @@ console.log(orderNames)
   - Ordene, de forma crescente, os objetos do array abaixo baseado em seus id's;
   - Não modifique o array original;
   - Exiba o array ordenado no console.
+
+  - Fazer uma copia do array e 
+  - Ordenar uma cópia
 */
 
 const characters = [
@@ -26,9 +33,14 @@ const characters = [
   { id: 04, name: 'Mufasa' }
 ]
 
-const orderCharacters = characters.sort((character1, character2) => 
-        character1.id - character2.id)
-console.log(orderCharacters)
+//Para uso do map(), precisamos que retorne um novo objeto.
+
+//Primeiro o objeto será criado, ({id: character.id, name: character.name}), devido ordem de precedencia
+//Depois o return é executado: => ({id: character.id, name: character.name}))
+
+const copyCharacter = characters.map(character => character)
+  .sort((character1, character2) => character1.id - character2.id)
+  console.log(copyCharacter)
 
 /*
   03
@@ -36,11 +48,17 @@ console.log(orderCharacters)
   - Ordene o array de números abaixo de forma crescente;
   - Não modifique o array original;
   - Exiba o array ordenado no console.
+
+   - Copia o array original com o metodo map()
+   - Ordena o array copiado com o metodo sort()
 */
 
 const numbers = [41, 15, 63, 349, 25, 22, 143, 64, 59, 291]
-const orderNumbers = numbers.sort((number1, number2) => number1 - number2)
-console.log(orderNumbers)
+
+const copyNumbers = numbers.map(number => number)
+  .sort((number1, number2) => number1 - number2)
+console.log(copyNumbers)
+
 
 /*
   04
@@ -50,9 +68,13 @@ console.log(orderNumbers)
 
 const randomNumbers = [10, 5, 0, 40, 60, 10, 20, 70]
 
+//==== minha reposta =====
 const orderNum = randomNumbers.filter(randomNumber => randomNumber > 50)
 console.log(orderNum[0])
 
+//===== resposta do professor =====
+const numMaior50 = randomNumbers.find(number => number > 50)
+console.log(numMaior50)
 
 /*
   05
@@ -63,17 +85,14 @@ console.log(orderNum[0])
 */
 
 const people = ['Cauã', 'Alfredo', 'Bruno']
+//==== minha resposta =====
+// const copyPeople = people.map(person => person)
+//     .sort((person1, person2) => person1 < person2 ? 1 : -1 )
+// console.log(copyPeople)
 
-const orderPeople = people.sort((person1, person2) => { 
-  if(person1 < person2) {
-    return 1
-  } else if (person1 > person2) {
-    return -1
-  }
-  return 0
-  
-})
-console.log(orderPeople)
+//=== resposta do professor ===
+const peopleCopy = people.map(person => person).sort().reverse()
+console.log(peopleCopy)
 
 /*
   06
@@ -81,12 +100,21 @@ console.log(orderPeople)
   - Através do array abaixo, gere a mensagem "vinho cozido, tomate cozido, 
     cebola cozida, cogumelo cozido";
   - Exiba a string no console.
+
+  - Temos um array e precisamos gerar uma string
+  - parametro acc => armazena o valor que a função retorna a cada execução
 */
 
 const ingredients = ['vinho', 'tomate', 'cebola', 'cogumelo']
 
-const alimentos = ingredients.map(item => `${item} cozido`)
-console.log(alimentos)
+const veryEats = ingredients.reduce((acc, item, index, array) => {
+  const lastWord = item[item.length - 1] === 'a' ? 'cozida' : 'cozido'
+  if (index === array.length -1 ){
+    return acc + `${item} ${lastWord}`
+  }
+  return acc + `${item} ${lastWord}, `
+}, '')
+console.log(veryEats)
 
 
 /*
@@ -96,7 +124,7 @@ console.log(alimentos)
     assistiram apenas os filmes da Disney.
 */
 
-const topBrazilmovies = [
+const topBrazilMovies = [
   { title: 'Vingadores: Ultimato', peopleAmount: 19686119, distributedBy: 'Disney' },
   { title: 'Titanic', peopleAmount: 17050000, distributedBy: 'Paramount / 20th Century' },
   { title: 'O Rei Leão', peopleAmount: 16267649, distributedBy: 'Disney' },
@@ -109,12 +137,9 @@ const topBrazilmovies = [
   { title: 'Dona Flor e Seus Dois Maridos', peopleAmount: 10735524, distributedBy: 'Embrafilme' }
 ]
 
-const peopleDisneyTotal = topBrazilmovies.reduce((accumulator, movie) => {
-  if (movie.distributedBy === 'Disney'){
-      accumulator += movie.peopleAmount
-  }
-  return accumulator
-}, 0)
+const peopleDisneyTotal = topBrazilMovies.reduce((acc, movie) => {
+  (movie.distributedBy === 'Disney' ? acc += movie.peopleAmount : acc)    
+  return acc }, 0)
 
 console.log(peopleDisneyTotal)
 
@@ -138,34 +163,36 @@ const pets = [
   { name: 'Chico', age: 6, gender: 'Male', type: 'Dog' }
 ]
 
-const ageHumanPets = pets.map(pet => {
-  if (pet.age){
-    return {
-      name: pet.name,
-      age: pet.age * 7,
-      gender: pet.gender,
-      type: pet.type
-    }
-  }
-  return pet
-})
-console.log(ageHumanPets)
+const dogAge = pets.filter(pet => pet.type === 'Dog')
+.map(pet => ({
+  name: pet.name,
+  age: pet.age * 7,
+  gender: pet.gender,
+  type: pet.type})
+) 
+console.log(dogAge)
+
 
 /*
   09
   
-  - Considerando o array topBrazilmovies, através do map ou do reduce, insira 
+  - Considerando o array topBrazilMovies, através do map ou do reduce, insira 
     os nomes dos filmes na ul do index.html.
 
 */
 const ul = document.querySelector('.list-group')
+// ===== uso do map()
+// const nameMovie = topBrazilMovies
+//     .map(movie => `<li>${movie.title}</li>`)
+//     .join('')
 
-const nameFilmes = topBrazilmovies.map(({title}) => title)
-console.log(nameFilmes)
+//ul.innerHTML += nameMovie
 
-topBrazilmovies.forEach(({title}) => {
-  ul.innerHTML += `<li>${(title)}</li>`
-})
+
+// ===== uso do reduce()   
+const listMovie = topBrazilMovies.reduce((acc, movie) =>
+  acc + `<li>${movie.title}</li>`, '')
+ul.innerHTML += listMovie
 
 /*
   10
