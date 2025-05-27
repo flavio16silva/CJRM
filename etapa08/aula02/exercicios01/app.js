@@ -10,10 +10,11 @@
   metodo sort()
 */
 
-const names = ['Caio', 'André', 'Dário']
+const getArrayCopy = array => array.map(item => item)
 
-const nameCopy = names.map(item => item).sort()
-console.log(nameCopy)
+const names = ['Caio', 'André', 'Dário']
+const nameCopyOrder = getArrayCopy(names).sort()
+console.log(nameCopyOrder)
 
 /*
   02
@@ -27,10 +28,10 @@ console.log(nameCopy)
 */
 
 const characters = [
-  { id: 03, name: 'Simba' },
-  { id: 02, name: 'Nala' },
-  { id: 01, name: 'Scar' },
-  { id: 04, name: 'Mufasa' }
+  { id: 3, name: 'Simba' },
+  { id: 2, name: 'Nala' },
+  { id: 1, name: 'Scar' },
+  { id: 4, name: 'Mufasa' }
 ]
 
 //Para uso do map(), precisamos que retorne um novo objeto.
@@ -38,9 +39,16 @@ const characters = [
 //Primeiro o objeto será criado, ({id: character.id, name: character.name}), devido ordem de precedencia
 //Depois o return é executado: => ({id: character.id, name: character.name}))
 
-const copyCharacter = characters.map(character => character)
-  .sort((character1, character2) => character1.id - character2.id)
-  console.log(copyCharacter)
+const copyOrderCharacter = characters
+//map(({id, name}) => ({id, name}))
+  .map(character => character)
+  .sort((item1, item2) => item1.id - item2.id)
+  console.log(copyOrderCharacter)
+
+  /*
+  As variaveis do destructiong não precisam ter necessariamente 
+  o mesmo nome das propriedades do objeto
+    */
 
 /*
   03
@@ -55,9 +63,9 @@ const copyCharacter = characters.map(character => character)
 
 const numbers = [41, 15, 63, 349, 25, 22, 143, 64, 59, 291]
 
-const copyNumbers = numbers.map(number => number)
+const copyOrderNumbers = getArrayCopy(numbers)
   .sort((number1, number2) => number1 - number2)
-console.log(copyNumbers)
+console.log(copyOrderNumbers)
 
 
 /*
@@ -86,13 +94,13 @@ console.log(numMaior50)
 
 const people = ['Cauã', 'Alfredo', 'Bruno']
 //==== minha resposta =====
-// const copyPeople = people.map(person => person)
-//     .sort((person1, person2) => person1 < person2 ? 1 : -1 )
-// console.log(copyPeople)
+const copyPeople = people.map(person => person)
+    .sort((person1, person2) => person1 < person2 ? 1 : -1 )
+console.log(copyPeople)
 
 //=== resposta do professor ===
-const peopleCopy = people.map(person => person).sort().reverse()
-console.log(peopleCopy)
+// const peopleCopyOrderReverse = getArrayCopy(people).sort().reverse()
+// console.log(peopleCopyOrderReverse)
 
 /*
   06
@@ -109,11 +117,12 @@ const ingredients = ['vinho', 'tomate', 'cebola', 'cogumelo']
 
 const veryEats = ingredients.reduce((acc, item, index, array) => {
   const lastWord = item[item.length - 1] === 'a' ? 'cozida' : 'cozido'
-  if (index === array.length -1 ){
-    return acc + `${item} ${lastWord}`
-  }
-  return acc + `${item} ${lastWord}, `
+  const isLastItem = index === array.length -1
+  const ingredientMessage = acc + `${item} ${lastWord}`
+
+  return isLastItem ? ingredientMessage : `${ingredientMessage}, `
 }, '')
+
 console.log(veryEats)
 
 
@@ -163,13 +172,13 @@ const pets = [
   { name: 'Chico', age: 6, gender: 'Male', type: 'Dog' }
 ]
 
-const dogAge = pets.filter(pet => pet.type === 'Dog')
-.map(pet => ({
-  name: pet.name,
-  age: pet.age * 7,
-  gender: pet.gender,
-  type: pet.type})
-) 
+const dogAge = pets.filter(({type}) => type === 'Dog')
+//propriedades recebendo uma variavel de mesmo nome, podemos resumir
+// name: name,
+// age: age * 7,
+// gender: gender,
+// type: type
+.map(({name, age, gender, type}) => ({name, age: age * 7, gender, type})) 
 console.log(dogAge)
 
 
@@ -190,8 +199,8 @@ const ul = document.querySelector('.list-group')
 
 
 // ===== uso do reduce()   
-const listMovie = topBrazilMovies.reduce((acc, movie) =>
-  acc + `<li>${movie.title}</li>`, '')
+const listMovie = topBrazilMovies
+.reduce((acc, {title}) => acc + `<li>${title}</li>`, '')
 ul.innerHTML += listMovie
 
 /*
