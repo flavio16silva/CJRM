@@ -6,6 +6,8 @@
 */
 
 const myString = '    JS      '
+const clearString = myString.trim()
+console.log(clearString)
 
 /*
   02
@@ -23,6 +25,10 @@ const people = [
   { firstName: 'Eric', lastName: 'Silva', score: 82 }
 ]
 
+const copyOrderPeople = people.map(item => item)
+                  .sort((item1, item2) => item1.score - item2.score)
+console.log(copyOrderPeople)
+
 /*
   03
 
@@ -34,6 +40,10 @@ const people = [
 */
 
 const animals = ['cão', 'gato', 'boi', 'leão', 'gnu', 'alce', 'ema']
+const copy3words = animals.map(item => item)
+                  .filter(item => item.length === 3)                
+console.log(copy3words)
+
 
 /*
   04
@@ -42,6 +52,8 @@ const animals = ['cão', 'gato', 'boi', 'leão', 'gnu', 'alce', 'ema']
     nome de cada animal. Ex.: [6, 8, 2].
 */
 
+const arrayAnimals = animals.map(item => item.length)
+console.log(arrayAnimals)
 
 
 /*
@@ -59,6 +71,10 @@ const friends = [
   { id: 4, name: 'Nilson', nearMe: true },
   { id: 5, name: 'Solange', nearMe: false }
 ]
+
+const trueFriends = friends.map(friend => friend)
+                    .filter(({nearMe}) => nearMe === true)
+console.log(trueFriends)                      
 
 
 
