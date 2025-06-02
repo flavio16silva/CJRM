@@ -87,6 +87,14 @@ console.log(trueFriends)
 
 const numbers = [46, 86, 212, 29, 51, 9, 25, 42, 81]
 
+const oldNumber = numbers.map(number => number)
+.reduce((acc, number) => number % 2 === 1 ? acc = acc + number++ : acc , 0)
+console.log(oldNumber)  
+
+const impar = numbers.filter(num => num % 2 === 1)
+                     .reduce((acc, num) => acc = acc + num++ , 0)
+console.log(impar)
+
 /*
   07
 
@@ -107,3 +115,9 @@ const data = [{
   country: 'Indonesia',
   population: 263991379
 }]
+
+const sumPopulation = data.filter(({country}) => country !== 'China')
+.reduce((acc, {population}) => acc = acc + population++ , 0)
+console.log(sumPopulation)
+
+
