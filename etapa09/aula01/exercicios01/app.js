@@ -1,8 +1,21 @@
 /*
+filter(), quando baseado em uma condição você precisar obter um novo array
+somente com alguns arrays do item orginal.
+
+reduce(), quando baseado no array original, você precisar reduzir o array 
+a algum tipo de dado.
+
+map(), quando baseado no array original, você precisar gerar um novo array 
+com a mesma quantidade de itens do array original.
+*/
+
+/*
   01
 
   - Exiba no console apenas as letras que a "myString" contém;
   - Não modifique a string manualmente.
+
+  trim(), não afeta o valor da string original
 */
 
 const myString = '    JS      '
@@ -16,6 +29,11 @@ console.log(clearString)
     (menores no topo, maiores em baixo);
   - Não modifique o array original;
   - Exiba o array ordenado no console.
+
+  Copiar array com mesma quantidade do array original - map()
+  Objetos são tipos de referencia, por isso temos que retornar um novo objeto
+  que contem as mesma propriedades e valores. Senão retornaria o objeto
+  original que seria alterado. 
 */
 
 const people = [
@@ -25,8 +43,9 @@ const people = [
   { firstName: 'Eric', lastName: 'Silva', score: 82 }
 ]
 
-const copyOrderPeople = people.map(item => item)
-                  .sort((item1, item2) => item1.score - item2.score)
+const copyOrderPeople = people
+.map(({firstName, lastName, score}) => ({ firstName, lastName, score }))
+.sort((item1, item2) => item1.score - item2.score)
 console.log(copyOrderPeople)
 
 /*
@@ -37,11 +56,13 @@ console.log(copyOrderPeople)
   Ps: Neste e nos demais exercícios, utilize o debugger para visualizar o valor 
       final que os exercícios pedem. Após resolver um exercício, remova o 
       debugger antes de partir para o próximo.
+
+      filter(), retorna true ou false para ver que itens irão para novo array
 */
 
 const animals = ['cão', 'gato', 'boi', 'leão', 'gnu', 'alce', 'ema']
 const copy3words = animals.map(item => item)
-                  .filter(item => item.length === 3)                
+                  .filter(({item}) => length === 3)                
 console.log(copy3words)
 
 
@@ -52,7 +73,7 @@ console.log(copy3words)
     nome de cada animal. Ex.: [6, 8, 2].
 */
 
-const arrayAnimals = animals.map(item => item.length)
+const arrayAnimals = animals.map(({item}) => length)
 console.log(arrayAnimals)
 
 
@@ -72,8 +93,8 @@ const friends = [
   { id: 5, name: 'Solange', nearMe: false }
 ]
 
-const trueFriends = friends.map(friend => friend)
-                    .filter(({nearMe}) => nearMe === true)
+const trueFriends = friends.filter(({nearMe}) => nearMe === true)
+                    .map(({name}) => name)
 console.log(trueFriends)                      
 
 
@@ -87,12 +108,13 @@ console.log(trueFriends)
 
 const numbers = [46, 86, 212, 29, 51, 9, 25, 42, 81]
 
-const oldNumber = numbers.map(number => number)
-.reduce((acc, number) => number % 2 === 1 ? acc = acc + number++ : acc , 0)
-console.log(oldNumber)  
+// const oldNumber = numbers.map(number => number)
+// .reduce((acc, number) => number % 2 === 1 ? acc = acc + number++ : acc , 0)
+// console.log(oldNumber)  
 
-const impar = numbers.filter(num => num % 2 === 1)
-                     .reduce((acc, num) => acc = acc + num++ , 0)
+const impar = numbers
+.filter(num => num % 2 === 1)
+.reduce((acc, num) => acc + num , 0)
 console.log(impar)
 
 /*
@@ -116,8 +138,9 @@ const data = [{
   population: 263991379
 }]
 
-const sumPopulation = data.filter(({country}) => country !== 'China')
-.reduce((acc, {population}) => acc = acc + population++ , 0)
+const sumPopulation = data
+.filter(({country}) => country !== 'China')
+.reduce((acc, {population}) => acc + population , 0)
 console.log(sumPopulation)
 
 
